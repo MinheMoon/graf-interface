@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реєстрація Власника Нерухомого Майна</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h3>Реєстрація Власника Нерухомого Майна</h3>
+        <div class="form-group">
+            <label for="last-name">Прізвище *</label>
+            <input type="text" id="last-name" placeholder="Введіть ваше прізвище">
+        </div>
+        <div class="form-group">
+            <label for="first-name">Ім'я *</label>
+            <input type="text" id="first-name" placeholder="Введіть ваше ім'я">
+        </div>
+        <div class="form-group">
+            <label for="middle-name">По батькові</label>
+            <input type="text" id="middle-name" placeholder="Введіть ваше по батькові">
+        </div>
+        <div class="form-group">
+            <label for="email">Електронна пошта *</label>
+            <input type="email" id="email" placeholder="Введіть вашу електронну пошту">
+        </div>
+        <div class="form-group">
+            <label for="phone">Телефон *</label>
+            <input type="tel" id="phone" placeholder="+380XXXXXXXXX">
+        </div>
+        <div class="form-group">
+            <label for="residence-address">Адреса проживання</label>
+            <input type="text" id="residence-address" placeholder="Введіть адресу проживання">
+        </div>
+        <div class="form-group">
+            <label for="property-type">Тип нерухомості</label>
+            <select id="property-type">
+                <option value="">Оберіть тип нерухомості</option>
+                <option value="house">Будинок</option>
+                <option value="apartment">Квартира</option>
+                <option value="land">Земельна ділянка</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="property-address">Адреса нерухомості *</label>
+            <input type="text" id="property-address" placeholder="Введіть адресу нерухомості">
+        </div>
+        <div class="form-group">
+            <label for="document-number">Номер документа про право власності *</label>
+            <input type="text" id="document-number" placeholder="Введіть номер документа">
+        </div>
+        <div class="form-actions">
+            <button class="submit-button" onclick="submitForm()">Зареєструвати</button>
+            <button class="clear-button" onclick="clearForm()">Очистити</button>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            const requiredFields = [
+                'last-name', 'first-name', 'email', 'phone', 'property-address', 'document-number'
+            ];
+            let isValid = true;
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    field.style.borderColor = 'red';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#948888';
+                }
+            });
+
+            if (isValid) {
+                alert('Форму успішно надіслано!');
+                clearForm();
+            } else {
+                alert('Будь ласка, заповніть всі обовязкові поля.');
+            }
+        }
+
+        function clearForm() {
+            document.querySelectorAll('input, select').forEach(input => {
+                input.value = '';
+                input.style.borderColor = '#948888';
+            });
+        }
+    </script>
+</body>
+</html>
